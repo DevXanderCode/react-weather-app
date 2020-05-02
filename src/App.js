@@ -9,7 +9,7 @@ function App() {
   const [query, setQuery] = useState("");
   const [weather, setWeather] = useState({});
 
-  // query the Api and set the the weather
+  // query the Api and set the weather state to the result of the query
   const search = async (event) => {
     if (event.key === "Enter") {
       const resp = await fetch(
@@ -65,7 +65,7 @@ function App() {
         : weather.weather[0].main === "Rain"
         ? "app rainy"
         : weather.weather[0].main === "Clear"
-        ? "app warm"
+        ? "app clear"
         : "app"
       : "app";
 

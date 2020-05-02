@@ -35,6 +35,10 @@ body {
   background-image: url(./assets/rainy1.jpg);
 }
 
+.app.clear {
+  background-image: url(./assets/clear-sky.jpg);
+}
+
 main {
   min-height: 100vh;
   background-image: linear-gradient(
