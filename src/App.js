@@ -9,17 +9,20 @@ function App() {
   const [query, setQuery] = useState("");
   const [weather, setWeather] = useState({});
 
-  const search = (event) => {
+  // query the Api and set the the weather
+  const search = async (event) => {
     if (event.key === "Enter") {
-      fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
-        .then((resp) => resp.json())
-        .then((result) => {
-          setWeather(result);
-          setQuery("");
-          console.log(result);
-        });
+      const resp = await fetch(
+        `${api.base}weather?q=${query}&units=metric&APPID=${api.key}`
+      );
+      const result = await resp.json();
+
+      setWeather(result);
+      setQuery("");
+      console.log(result);
     }
   };
+  //get the current Date.
   const dateBuilder = (d) => {
     let months = [
       "January",
@@ -52,16 +55,22 @@ function App() {
     return `${day} ${date} ${month} ${year}`;
   };
 
+  // to decide the className depending on the weather of the location so as to change the background image accordingly.
+  const decideClass =
+    typeof weather.main !== "undefined"
+      ? weather.weather[0].main === "Sunny"
+        ? "app warm"
+        : weather.weather[0].main === "Clouds"
+        ? "app cloud"
+        : weather.weather[0].main === "Rain"
+        ? "app rainy"
+        : weather.weather[0].main === "Clear"
+        ? "app warm"
+        : "app"
+      : "app";
+
   return (
-    <div
-      className={
-        typeof weather.main != "undefined"
-          ? weather.main.temp > 16
-            ? "app warm"
-            : "app"
-          : "app"
-      }
-    >
+    <div className={typeof weather.main != "undefined" ? decideClass : "app"}>
       <main>
         <div className="search-box">
           <input

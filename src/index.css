@@ -13,13 +13,26 @@ body {
   text-align: center;
   background-image: url(./assets/winter2.jpg);
   background-size: cover;
-  background-position: bottom;
-  transition: 0.4 ease-out;
+  background-position: center;
   background-repeat: no-repeat;
+  transition: 0.4 ease-out;
+  /* TRANSITION */
+  -webkit-transition: background 0.4s;
+  -moz-transition: background 0.4s;
+  -o-transition: background 0.4s;
+  transition: background 0.4s;
 }
 
 .app.warm {
   background-image: url(./assets/warmer.jpg);
+}
+
+.app.cloud {
+  background-image: url(./assets/cloud.jpg);
+}
+
+.app.rainy {
+  background-image: url(./assets/rainy1.jpg);
 }
 
 main {
